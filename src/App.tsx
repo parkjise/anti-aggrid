@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './common/components/Layout';
 import BasicGridSample from './pages/Community/BasicGridSample';
@@ -50,7 +50,6 @@ import UndoRedoSample from './pages/Enterprise/UndoRedoSample';
 import ServerSideRowModelSample from './pages/Enterprise/ServerSideRowModelSample';
 import IntegratedChartsSample from './pages/Enterprise/IntegratedChartsSample';
 
-import { LicenseManager } from 'ag-grid-enterprise';
 // 엔터프라이즈 기능 테스트를 위해 필요하지만, 데모 환경이므로 무시 (워터마크 출력)
 
 function App() {

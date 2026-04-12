@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import { type ColDef, ModuleRegistry, type GetContextMenuItemsParams, type MenuItemDef } from 'ag-grid-community';
+import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
@@ -15,7 +15,7 @@ const ContextMenuSample: React.FC = () => {
 
   const defaultColDef = useMemo<ColDef>(() => ({ flex: 1 }), []);
 
-  const getContextMenuItems = (params: GetContextMenuItemsParams): (string | MenuItemDef)[] => {
+  const getContextMenuItems = (params: any) => {
     // 기본 제공되는 복사, 붙여넣기 기능과 커스텀 메뉴를 조합하여 반환합니다.
     return [
       'copy', // "Copy" 기본 메뉴
@@ -30,7 +30,7 @@ const ContextMenuSample: React.FC = () => {
         icon: '<span style="font-size: 1.2rem;">🔈</span>'
       },
       'export' // 내보내기 그룹 (CSV, 엑셀 등)
-    ];
+    ] as any[];
   };
 
   return (

@@ -30,7 +30,7 @@ const AdvancedFilterSample: React.FC = () => {
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
         <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
           enableAdvancedFilter={true} // 핵심 속성
-          advancedFilterModel={null}
+
         />
       </div></div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import { type ColDef, ModuleRegistry, type RowNode } from 'ag-grid-community';
+import { type ColDef, ModuleRegistry, type IRowNode } from 'ag-grid-community';
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
@@ -19,7 +19,7 @@ const BatchEditingSample: React.FC = () => {
 
   const onUpdateSalary10Percent = () => {
     const itemsToUpdate: Employee[] = [];
-    gridRef.current?.api.forEachNode((node: RowNode<Employee>) => {
+    gridRef.current?.api.forEachNode((node: IRowNode<Employee>) => {
       if (node.data) {
         itemsToUpdate.push({ ...node.data, salary: Math.floor(node.data.salary * 1.1) });
       }

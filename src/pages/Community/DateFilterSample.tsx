@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import { type ColDef, ModuleRegistry, type IDateFilterParams } from 'ag-grid-community';
+import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllCommunityModule } from 'ag-grid-community';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';

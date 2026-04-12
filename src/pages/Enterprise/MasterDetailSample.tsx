@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import { type ColDef, ModuleRegistry, type IDataOptions } from 'ag-grid-community';
+import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
 import { generateOrderData, generateOrderDetails, type Order } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
