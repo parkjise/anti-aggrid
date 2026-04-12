@@ -1,0 +1,21 @@
+.my-scss-theme {
+  height: 100%;
+  width: 100%;
+  
+  /* AG Grid 최신 버전(v31+)의 CSS Variables 오버라이딩 */
+  --ag-header-background-color: #312e81; /* Indigo 900 */
+  --ag-header-foreground-color: #ffffff;
+  --ag-row-hover-color: #e0e7ff; /* Indigo 100 */
+  --ag-selected-row-background-color: #c7d2fe; /* Indigo 200 */
+  --ag-odd-row-background-color: #f8fafc; /* Slate 50 */
+  --ag-font-family: 'Inter', system-ui, sans-serif;
+  --ag-border-color: #c7d2fe;
+
+  /* 기본 Wrapper 선 제거 및 그림자 효과 부여 */
+  .ag-root-wrapper {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+  }
+}
