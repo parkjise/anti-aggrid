@@ -48,8 +48,12 @@ const enterpriseSamples = [
 ];
 
 const stylingSamples = [
-  { path: '/styling/scss', label: 'SCSS 테마 커스텀' },
-  { path: '/styling/styled-components', label: 'Styled Components 래퍼' },
+  { path: '/styling/scss', label: '1. Theme Custom (SCSS)' },
+  { path: '/styling/styled-components', label: '2. Styled-Components Wrapper' },
+  { path: '/styling/row-height', label: '3. Row & Header Height' },
+  { path: '/styling/cell-border', label: '4. Cell Border Styling' },
+  { path: '/styling/cell-alignment', label: '5. Cell Alignment' },
+  { path: '/styling/cell-class-alignment', label: '6. Cell Class Alignment' },
 ];
 
 const SidebarItem: React.FC<{ title: string; items: {path: string, label: string}[] }> = ({ title, items }) => {

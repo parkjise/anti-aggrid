@@ -1,0 +1,21 @@
+
+.centered-cell {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center;
+}
+
+.right-aligned-cell {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  text-align: right;
+}
+
+.left-aligned-cell {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: left;
+}

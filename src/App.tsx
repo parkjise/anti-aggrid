@@ -25,6 +25,10 @@ import CustomCellStyleSample from './pages/Community/CustomCellStyleSample';
 import LoadingEmptyStateSample from './pages/Community/LoadingEmptyStateSample';
 import ScssStyleSample from './pages/Styling/ScssStyleSample';
 import StyledComponentSample from './pages/Styling/StyledComponentSample';
+import RowHeightSample from './pages/Styling/RowHeightSample';
+import CellBorderSample from './pages/Styling/CellBorderSample';
+import CellAlignmentSample from './pages/Styling/CellAlignmentSample';
+import CellClassAlignmentSample from './pages/Styling/CellClassAlignmentSample';
 
 // Phase 4
 import SetFilterSample from './pages/Enterprise/SetFilterSample';
@@ -85,6 +89,10 @@ function App() {
           {/* Styling */}
           <Route path="styling/scss" element={<ScssStyleSample />} />
           <Route path="styling/styled-components" element={<StyledComponentSample />} />
+          <Route path="styling/row-height" element={<RowHeightSample />} />
+          <Route path="styling/cell-border" element={<CellBorderSample />} />
+          <Route path="styling/cell-alignment" element={<CellAlignmentSample />} />
+          <Route path="styling/cell-class-alignment" element={<CellClassAlignmentSample />} />
 
           {/* Phase 4 Enterprise */}
           <Route path="enterprise/set-filter" element={<SetFilterSample />} />
