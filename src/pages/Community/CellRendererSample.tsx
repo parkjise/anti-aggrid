@@ -4,6 +4,8 @@ import { type ColDef, ModuleRegistry, type ICellRendererParams } from 'ag-grid-c
 import { AllCommunityModule } from 'ag-grid-community';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './CellRendererSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -35,7 +37,7 @@ const ActionButtonRenderer = (params: ICellRendererParams) => {
 };
 
 const CellRendererSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(500));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'name' },
@@ -68,8 +70,9 @@ const CellRendererSample: React.FC = () => {
         usageScenarios="행마다 '상세보기' 팝업 띄우기 버튼을 삽입하거나, DB 상태값(true/false)을 분석하여 예쁜 뱃지(Badge) 컴포넌트로 꾸밀 때 사용되는 코어 기능입니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="CellRendererSample.tsx" />
     </div>
   );
 };

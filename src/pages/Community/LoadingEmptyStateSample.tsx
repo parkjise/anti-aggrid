@@ -4,6 +4,8 @@ import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllCommunityModule } from 'ag-grid-community';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './LoadingEmptyStateSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -21,7 +23,7 @@ const LoadingEmptyStateSample: React.FC = () => {
     // 로딩 오버레이 수동 호출
     gridRef.current?.api.showLoadingOverlay();
     setTimeout(() => {
-      setRowData(generateEmployeeData(50));
+      setRowData(generateEmployeeData(10));
       // gridApi.hideOverlay() 는 rowData가 들어오면 알아서 닫힙니다 (설정에 따라)
     }, 2000);
   };
@@ -49,11 +51,12 @@ const LoadingEmptyStateSample: React.FC = () => {
         </button>
       </div>
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> ref={gridRef} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
+        <AgGridReact<Employee> theme="legacy" ref={gridRef} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
           overlayLoadingTemplate={`<span class="ag-overlay-loading-center" style="border: 2px solid #eab308; padding: 10px; border-radius: 4px; color: #ca8a04;">데이터를 불러오는 중입니다...</span>`}
           overlayNoRowsTemplate={`<span style="font-size: 1.2rem; color: #94a3b8;">조회된 직원이 없습니다.</span>`}
         />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="LoadingEmptyStateSample.tsx" />
     </div>
   );
 };

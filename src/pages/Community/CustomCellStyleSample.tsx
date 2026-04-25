@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry, type CellClassParams, type CellStyle } fro
 import { AllCommunityModule } from 'ag-grid-community';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './CustomCellStyleSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const CustomCellStyleSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(200));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'name' },
@@ -51,8 +53,9 @@ const CustomCellStyleSample: React.FC = () => {
         usageScenarios="초과 근무자 표시, 재고 부족 알림 빨간색 표시, 특정 부서 하이라이팅 등 엑셀의 '조건부 서식' 기능을 완벽하게 대체합니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="CustomCellStyleSample.tsx" />
     </div>
   );
 };

@@ -4,12 +4,14 @@ import { type ColDef, ModuleRegistry, type IRowNode } from 'ag-grid-community';
 import { AllCommunityModule } from 'ag-grid-community';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './ExternalFilterSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const ExternalFilterSample: React.FC = () => {
   const gridRef = useRef<AgGridReact<Employee>>(null);
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(500));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
   const [activeFilter, setActiveFilter] = useState<'all'|'highSalary'>('all');
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
@@ -55,9 +57,10 @@ const ExternalFilterSample: React.FC = () => {
       </div>
 
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> ref={gridRef} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
+        <AgGridReact<Employee> theme="legacy" ref={gridRef} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
           isExternalFilterPresent={isExternalFilterPresent} doesExternalFilterPass={doesExternalFilterPass} />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="ExternalFilterSample.tsx" />
     </div>
   );
 };

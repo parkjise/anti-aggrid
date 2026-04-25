@@ -4,12 +4,14 @@ import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllCommunityModule } from 'ag-grid-community';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './CellClassAlignmentSample.tsx?raw';
 import './CellClassAlignmentSample.css';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const CellClassAlignmentSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(50));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { 
@@ -49,7 +51,7 @@ const CellClassAlignmentSample: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '16px' }}>
       <SampleHeader 
-        title="24. Alignment via CSS Class (클래스 기반 정렬)" 
+        title="6. Cell Class Alignment" 
         description="cellStyle 대신 CSS 클래스(cellClass)를 사용하여 셀의 텍스트 및 콘텐츠를 정렬합니다."
         coreFeatures={[
           "<code>cellClass: 'centered-cell'</code>: 외부 CSS 파일에 정의된 클래스를 적용하여 중앙 정렬 구현",
@@ -58,16 +60,18 @@ const CellClassAlignmentSample: React.FC = () => {
         ]}
         usageScenarios="인라인 스타일(cellStyle)을 피하고 프로젝트 표준 CSS 시스템에 맞춰 정렬 스타일을 관리하고자 할 때 사용합니다. 특히 행 높이가 커질 때 수직 중앙 정렬을 보장하기에 유리합니다."
       />
-      <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}>
+      <div className="grid-wrapper" style={{ flex: 1, padding: 0, overflow: 'hidden' }}>
         <div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-          <AgGridReact<Employee> 
+          <AgGridReact<Employee> theme="legacy" 
             rowData={rowData} 
             columnDefs={columnDefs} 
             defaultColDef={defaultColDef}
-            rowHeight={60} // 클래스 기반 수직 중앙 정렬 확인을 위해 높이 설정
+            rowHeight={40}
+            headerHeight={40}
           />
         </div>
       </div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="CellClassAlignmentSample.tsx" />
     </div>
   );
 };

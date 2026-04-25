@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './RowGroupingSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllEnterpriseModule]);
 
 const RowGroupingSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(1000));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     // rowGroup: true 를 주는 순간 자동으로 그룹핑 폴더 뷰가 생성됩니다.
@@ -31,11 +33,12 @@ const RowGroupingSample: React.FC = () => {
         usageScenarios="부서별로 소속 직원을 묶어보거나, 제품 카테고리별로 주문들을 묶어서 볼 때 가장 직관적인 UI(폴더 트리 형태)를 제공해 줍니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
           groupDisplayType="singleColumn" // 여러 그룹을 하나의 컬럼 계층에 표시
           autoGroupColumnDef={{ headerName: '조직도', minWidth: 250 }}
         />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="RowGroupingSample.tsx" />
     </div>
   );
 };

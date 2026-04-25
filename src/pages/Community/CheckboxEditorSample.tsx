@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllCommunityModule } from 'ag-grid-community';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './CheckboxEditorSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const CheckboxEditorSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(100));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'name' },
@@ -34,8 +36,9 @@ const CheckboxEditorSample: React.FC = () => {
         usageScenarios="'퇴사 여부', '승인 여부' 등 Yes/No 데이터 항목을 관리할 때, True/False 글자를 띄우는 것보다 직관적인 On/Off 체크박스를 제공하여 편집 효율을 높입니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="CheckboxEditorSample.tsx" />
     </div>
   );
 };

@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry, type SideBarDef } from 'ag-grid-community'
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './FiltersToolPanelSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllEnterpriseModule]);
 
 const FiltersToolPanelSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(500));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'employeeNo', filter: true }, 
     { field: 'name', filter: true }, 
@@ -44,10 +46,11 @@ const FiltersToolPanelSample: React.FC = () => {
         usageScenarios="아마존 상품 검색이나 쇼핑몰의 좌측 패널처럼, 다양한 조건(10개 이상)을 한 번에 내려다보면서 조합형으로 켜고 끄고 싶을 때 헤더클릭 방식보다 월등한 UX를 자랑합니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
           sideBar={sideBar}
         />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="FiltersToolPanelSample.tsx" />
     </div>
   );
 };

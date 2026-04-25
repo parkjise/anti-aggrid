@@ -4,12 +4,14 @@ import { type ColDef, ModuleRegistry, type SelectionChangedEvent } from 'ag-grid
 import { AllCommunityModule } from 'ag-grid-community';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './RowSelectionSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const RowSelectionSample: React.FC = () => {
   const gridRef = useRef<AgGridReact<Employee>>(null);
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(300));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
   const [selectedCount, setSelectedCount] = useState(0);
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
@@ -38,9 +40,10 @@ const RowSelectionSample: React.FC = () => {
         <button disabled={selectedCount === 0} style={{ marginLeft: '16px', padding: '6px 12px', background: selectedCount > 0 ? '#1d4ed8' : '#9ca3af', color: 'white', border: 'none', borderRadius: '4px' }}>테스트용 일괄 삭제 버튼</button>
       </div>
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> ref={gridRef} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
+        <AgGridReact<Employee> theme="legacy" ref={gridRef} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
           rowSelection="multiple" onSelectionChanged={onSelectionChanged} />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="RowSelectionSample.tsx" />
     </div>
   );
 };

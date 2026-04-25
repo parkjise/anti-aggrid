@@ -5,11 +5,13 @@ import { AllEnterpriseModule } from 'ag-grid-enterprise';
 // 이 예제에서는 원본 전체 데이터를 Server DB라고 가정합니다.
 import { generateEmployeeData } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './ServerSideRowModelSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllEnterpriseModule]);
 
 // 1만건의 백엔드 가상 데이터 베이스 생성
-const mockDatabase = generateEmployeeData(10000);
+const mockDatabase = generateEmployeeData(10);
 
 const ServerSideRowModelSample: React.FC = () => {
   const columnDefs = useMemo<ColDef[]>(() => [
@@ -47,7 +49,7 @@ const ServerSideRowModelSample: React.FC = () => {
         usageScenarios="현업에서 빅데이터 1,000만 건 테이블을 스크롤로 가볍게 보여줘야 할 때 사용하는 '무한 스크롤(Infinite Scroll) 및 서버사이드 그룹핑'의 정수입니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact 
+         <AgGridReact theme="legacy" rowHeight={40} headerHeight={40} 
           columnDefs={columnDefs} defaultColDef={defaultColDef} 
           rowModelType="serverSide"
           serverSideDatasource={serverSideDatasource}
@@ -55,6 +57,7 @@ const ServerSideRowModelSample: React.FC = () => {
           cacheBlockSize={50}
         />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="ServerSideRowModelSample.tsx" />
     </div>
   );
 };

@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllCommunityModule } from 'ag-grid-community';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './ColumnResizeSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const ColumnResizeSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(100));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   // flex가 아닌 고정 width를 부여해야 리사이징 테스트가 용이
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
@@ -32,8 +34,9 @@ const ColumnResizeSample: React.FC = () => {
         usageScenarios="이메일, 주소, 비고(메모) 란 처럼 내용이 길어서 잘릴 수 있는 데이터가 있을 경우 필수입니다. 사용자가 직접 너비를 조정하게 열어두는 것이 좋습니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="ColumnResizeSample.tsx" />
     </div>
   );
 };

@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './PivotSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllEnterpriseModule]);
 
 const PivotSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(1000));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     // 세로축 (Row Grouping)
@@ -32,10 +34,11 @@ const PivotSample: React.FC = () => {
         usageScenarios="'월별(가로) 카테고리별(세로) 매출액(값)'과 같이 다차원 분석 데이터 구조를 뿜어낼 때, 백엔드에서 복잡한 Pivot 쿼리를 짜지 않아도 클라이언트에서 이 화면을 한 방에 구성합니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
           pivotMode={true} 
         />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="PivotSample.tsx" />
     </div>
   );
 };

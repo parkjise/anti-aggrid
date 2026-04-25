@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllCommunityModule } from 'ag-grid-community';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './DateFilterSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const DateFilterSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(500));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
 
 
@@ -44,8 +46,9 @@ const DateFilterSample: React.FC = () => {
         usageScenarios="가입일, 주문일 등 트랜잭션 데이터에서 '최근 1주일', '특정 일자 이전' 등을 조회할 때 반드시 필요합니다. comparator 커스텀은 필수입니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="DateFilterSample.tsx" />
     </div>
   );
 };

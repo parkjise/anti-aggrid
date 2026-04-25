@@ -5,6 +5,8 @@ import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllCommunityModule } from 'ag-grid-community';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './StyledComponentSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -35,7 +37,7 @@ const StyledGridWrapper = styled.div`
 `;
 
 const StyledComponentSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(50));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'name' }, { field: 'department' }, { field: 'position' }
   ], []);
@@ -44,7 +46,7 @@ const StyledComponentSample: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '16px' }}>
       <SampleHeader 
-        title="Styled Components 커스텀" description="React 진영의 CSS-in-JS 대표주자인 styled-components를 활용해 부작용(Side Effect) 없이 컴포넌트 레벨에서 스타일을 덮어씌웁니다."
+        title="2. Styled-Components Wrapper" description="React 진영의 CSS-in-JS 대표주자인 styled-components를 활용해 부작용(Side Effect) 없이 컴포넌트 레벨에서 스타일을 덮어씌웁니다."
         coreFeatures={[
           "<code>styled.div</code>: 래퍼 컴포넌트를 만들어 그 내부의 열그리드 전용 스타일을 캡슐화",
           "<code>--ag-*</code> 변수 오버라이드 및 내부 하위(pseudo) 선택자 강제 조정 가능"
@@ -53,9 +55,10 @@ const StyledComponentSample: React.FC = () => {
       />
       <StyledGridWrapper>
         <div className="ag-theme-quartz">
-          <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
+          <AgGridReact theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
         </div>
       </StyledGridWrapper>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="StyledComponentSample.tsx" />
     </div>
   );
 };

@@ -6,11 +6,13 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './SortGridSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const SortGridSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(5000));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'employeeNo', headerName: 'Emp No' },
@@ -43,7 +45,7 @@ const SortGridSample: React.FC = () => {
 
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}>
         <div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-          <AgGridReact<Employee>
+           <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40}
             rowData={rowData}
             columnDefs={columnDefs}
             defaultColDef={defaultColDef}
@@ -51,6 +53,7 @@ const SortGridSample: React.FC = () => {
           />
         </div>
       </div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="SortGridSample.tsx" />
     </div>
   );
 };

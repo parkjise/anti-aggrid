@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry, type SideBarDef } from 'ag-grid-community'
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './ColumnsToolPanelSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllEnterpriseModule]);
 
 const ColumnsToolPanelSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(500));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'employeeNo' }, { field: 'name' }, { field: 'department' }, 
     { field: 'position' }, { field: 'salary' }, { field: 'joinDate' }
@@ -42,10 +44,11 @@ const ColumnsToolPanelSample: React.FC = () => {
         usageScenarios="컬럼이 50개가 넘어가는 거대한 회계장부나 주문원장 화면에서, 눈아프게 스크롤을 넘기지 않고도 우측 사이드바에서 원하는 컬럼만 체크하고 드래그 앤 드롭해서 모아보고 싶을 때 씁니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
           sideBar={sideBar}
         />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="ColumnsToolPanelSample.tsx" />
     </div>
   );
 };

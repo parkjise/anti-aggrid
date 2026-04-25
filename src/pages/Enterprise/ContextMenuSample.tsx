@@ -1,21 +1,23 @@
 import React, { useState, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import { type ColDef, ModuleRegistry } from 'ag-grid-community';
+import { type ColDef, ModuleRegistry, type DefaultMenuItem, type GetContextMenuItemsParams, type MenuItemDef } from 'ag-grid-community';
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './ContextMenuSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllEnterpriseModule]);
 
 const ContextMenuSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(500));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'employeeNo' }, { field: 'name' }, { field: 'department' }, { field: 'salary' }
   ], []);
 
   const defaultColDef = useMemo<ColDef>(() => ({ flex: 1 }), []);
 
-  const getContextMenuItems = (params: any) => {
+  const getContextMenuItems = (params: GetContextMenuItemsParams<Employee>): (DefaultMenuItem | MenuItemDef<Employee>)[] => {
     // 기본 제공되는 복사, 붙여넣기 기능과 커스텀 메뉴를 조합하여 반환합니다.
     return [
       'copy', // "Copy" 기본 메뉴
@@ -30,7 +32,7 @@ const ContextMenuSample: React.FC = () => {
         icon: '<span style="font-size: 1.2rem;">🔈</span>'
       },
       'export' // 내보내기 그룹 (CSV, 엑셀 등)
-    ] as any[];
+    ];
   };
 
   return (
@@ -44,11 +46,12 @@ const ContextMenuSample: React.FC = () => {
         usageScenarios="오직 화면 공간 최적화를 위해 컬럼에 버튼을 그리지 않고, 해당 사용자를 우클릭해 나오는 팝업에서 '상세조회', '권한변경', '강제탈퇴' 등의 부가 액션을 처리할 때 사용합니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
           allowContextMenuWithControlKey={true}
           getContextMenuItems={getContextMenuItems}
         />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="ContextMenuSample.tsx" />
     </div>
   );
 };

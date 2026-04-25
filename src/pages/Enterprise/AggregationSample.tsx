@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './AggregationSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllEnterpriseModule]);
 
 const AggregationSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(500));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'department', rowGroup: true, hide: true },
@@ -30,10 +32,11 @@ const AggregationSample: React.FC = () => {
         usageScenarios="부서별로 폴더가 묶였을 때, 묶인 행들의 총 매출, 평균 급여 등을 상위 폴더 행에 실시간으로 표시해주고 싶을 때 사용합니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
           autoGroupColumnDef={{ headerName: '조직 (부서)', minWidth: 200 }} 
         />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="AggregationSample.tsx" />
     </div>
   );
 };

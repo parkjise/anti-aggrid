@@ -4,6 +4,8 @@ import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllCommunityModule } from 'ag-grid-community';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './ScssStyleSample.tsx?raw';
 
 // SCSS 파일 임포트
 import './ScssStyleSample.scss';
@@ -11,7 +13,7 @@ import './ScssStyleSample.scss';
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const ScssStyleSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(50));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'name' }, { field: 'department' }, { field: 'salary' }
   ], []);
@@ -20,7 +22,7 @@ const ScssStyleSample: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '16px' }}>
       <SampleHeader 
-        title="SCSS 기반 테마 커스텀" description="SCSS와 CSS 변수(Variables)를 이용하여 최신 방식의 AG Grid 전역 테마를 손쉽게 변경합니다."
+        title="1. Theme Custom (SCSS)" description="SCSS와 CSS 변수(Variables)를 이용하여 최신 방식의 AG Grid 전역 테마를 손쉽게 변경합니다."
         coreFeatures={[
           "<code>.my-scss-theme</code>: 커스텀 클래스 하위에 AG Grid 테마 변수 재할당",
           "<code>--ag-header-background-color</code>: 헤더 배경색 변경"
@@ -30,9 +32,10 @@ const ScssStyleSample: React.FC = () => {
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}>
         {/* 기본 ag-theme-quartz 옆에 우리가 정의한 커스텀 클래스를 함께 붙입니다. */}
         <div className="ag-theme-quartz my-scss-theme">
-          <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
+           <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
         </div>
       </div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="ScssStyleSample.tsx" />
     </div>
   );
 };

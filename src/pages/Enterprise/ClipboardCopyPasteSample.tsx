@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './ClipboardCopyPasteSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllEnterpriseModule]);
 
 const ClipboardCopyPasteSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(300));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'employeeNo' }, { field: 'name' }, { field: 'department' }, 
@@ -29,11 +31,12 @@ const ClipboardCopyPasteSample: React.FC = () => {
         usageScenarios="현업에서 사용자가 엑셀로 한참 작업 시뮬레이션을 하다가, 결과물 블록만 주르륵 복사해서 백오피스망 그리드에 Ctrl+V 로 때려박을 때(대량 입력 UX) 필수적입니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
           enableRangeSelection={true} 
           copyHeadersToClipboard={true}
         />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="ClipboardCopyPasteSample.tsx" />
     </div>
   );
 };

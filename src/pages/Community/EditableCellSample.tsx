@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry, type CellValueChangedEvent } from 'ag-grid
 import { AllCommunityModule } from 'ag-grid-community';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './EditableCellSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const EditableCellSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(100));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
   const [log, setLog] = useState<string>('');
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
@@ -43,8 +45,9 @@ const EditableCellSample: React.FC = () => {
       />
       {log && <div style={{ padding: '8px', color: '#b91c1c', fontWeight: 'bold' }}>💡 {log}</div>}
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} onCellValueChanged={onCellValueChanged} />
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} onCellValueChanged={onCellValueChanged} />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="EditableCellSample.tsx" />
     </div>
   );
 };

@@ -4,12 +4,14 @@ import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './UndoRedoSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllEnterpriseModule]);
 
 const UndoRedoSample: React.FC = () => {
   const gridRef = useRef<AgGridReact<Employee>>(null);
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(500));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'employeeNo' }, { field: 'name', editable: true }, 
@@ -37,11 +39,12 @@ const UndoRedoSample: React.FC = () => {
         <button onClick={onRedo} style={{ padding: '8px 16px', fontWeight: 'bold' }}>↷ 다시 실행 (Ctrl+Y)</button>
       </div>
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> ref={gridRef} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
+        <AgGridReact<Employee> theme="legacy" ref={gridRef} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
           undoRedoCellEditing={true}
           undoRedoCellEditingLimit={20}
         />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="UndoRedoSample.tsx" />
     </div>
   );
 };

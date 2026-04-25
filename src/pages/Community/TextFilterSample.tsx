@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry, type ITextFilterParams } from 'ag-grid-com
 import { AllCommunityModule } from 'ag-grid-community';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './TextFilterSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const TextFilterSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(500));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'employeeNo', headerName: 'Emp No' },
@@ -44,8 +46,9 @@ const TextFilterSample: React.FC = () => {
         usageScenarios="이름, 주소, 상품명과 같은 문자열 데이터를 검색할 때 필수적입니다. 실무에서는 사용자가 헷갈리지 않게 '포함됨(contains)' 조건을 디폴트로 걸어주는 것이 좋습니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="TextFilterSample.tsx" />
     </div>
   );
 };

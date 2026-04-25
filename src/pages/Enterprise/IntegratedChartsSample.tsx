@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './IntegratedChartsSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllEnterpriseModule]);
 
 const IntegratedChartsSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(100));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'name', chartDataType: 'category' }, // X축 (라벨 이름)
@@ -29,11 +31,12 @@ const IntegratedChartsSample: React.FC = () => {
         usageScenarios="Highcharts나 ECharts 같은 무거운 라이브러리를 붙이지 않아도, 재무팀이나 기획팀이 엑셀처럼 표 데이터의 일부분을 드래그-우클릭 해서 다이나믹 보고서용 차트 스냅샷을 찍을 수 있게 해줍니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
+         <AgGridReact theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
           enableRangeSelection={true} 
           enableCharts={true}
         />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="IntegratedChartsSample.tsx" />
     </div>
   );
 };

@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry } from 'ag-grid-community';
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './FillHandleSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllEnterpriseModule]);
 
 const FillHandleSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(300));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'employeeNo' }, 
@@ -30,11 +32,12 @@ const FillHandleSample: React.FC = () => {
         usageScenarios="부서 이름을 옮기거나, 한꺼번에 50명의 연봉 값을 0으로 덮어쓸 일이 있을 때 일일이 붙여넣기 대신 하단으로 쭉 드래그해서 데이터를 덮어쓰게 만들어 줍니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
           enableRangeSelection={true} 
           enableFillHandle={true}
         />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="FillHandleSample.tsx" />
     </div>
   );
 };

@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry, type ValueGetterParams } from 'ag-grid-com
 import { AllCommunityModule } from 'ag-grid-community';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './RowNumbersSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const RowNumbersSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(500));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { 
@@ -37,8 +39,9 @@ const RowNumbersSample: React.FC = () => {
         usageScenarios="게시판 목록이나 결제 내역의 맨 앞에 '1, 2, 3...' 번호를 달아둘 때 유용하며, 이름순/날짜순으로 컬럼 정렬을 가해도 항상 1번부터 차례대로 번호가 재배치됩니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="RowNumbersSample.tsx" />
     </div>
   );
 };

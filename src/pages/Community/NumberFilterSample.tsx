@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry, type INumberFilterParams } from 'ag-grid-c
 import { AllCommunityModule } from 'ag-grid-community';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './NumberFilterSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const NumberFilterSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(500));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'name', headerName: 'Name' },
@@ -36,8 +38,9 @@ const NumberFilterSample: React.FC = () => {
         usageScenarios="매출액, 재고량, 연봉 등 크기 비교가 중요한 데이터에 쓰입니다. 특정 금액 이상 조회 등에 아주 유용합니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="NumberFilterSample.tsx" />
     </div>
   );
 };

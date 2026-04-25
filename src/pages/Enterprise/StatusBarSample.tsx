@@ -4,11 +4,13 @@ import { type ColDef, ModuleRegistry, type StatusPanelDef } from 'ag-grid-commun
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './StatusBarSample.tsx?raw';
 
 ModuleRegistry.registerModules([AllEnterpriseModule]);
 
 const StatusBarSample: React.FC = () => {
-  const [rowData] = useState<Employee[]>(() => generateEmployeeData(500));
+  const [rowData] = useState<Employee[]>(() => generateEmployeeData(10));
 
   const columnDefs = useMemo<ColDef<Employee>[]>(() => [
     { field: 'name' }, { field: 'department', filter: true }, 
@@ -38,12 +40,13 @@ const StatusBarSample: React.FC = () => {
         usageScenarios="숫자 데이터(예: 급여 열) 일부를 마우스로 쭉 긁었을 때 하단에 '합계: $150,000' 이라고 바로 떠주기를 기대하는 임원진(의사결정권자)의 요구를 한 방에 만족시킵니다."
       />
       <div className="grid-wrapper" style={{ flex: 1, padding: 0 }}><div className="ag-theme-quartz" style={{ height: '100%', width: '100%' }}>
-        <AgGridReact<Employee> rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
+         <AgGridReact<Employee> theme="legacy" rowHeight={40} headerHeight={40} rowData={rowData} columnDefs={columnDefs} defaultColDef={defaultColDef} 
           enableRangeSelection={true} 
           rowSelection="multiple"
           statusBar={statusBar}
         />
       </div></div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="StatusBarSample.tsx" />
     </div>
   );
 };
