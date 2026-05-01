@@ -25,6 +25,7 @@ export const communitySamples: SampleMenuItem[] = [
   { path: '/community/csv-export', label: '18. CSV Export', group: 'Community 기능' },
   { path: '/community/custom-cell-style', label: '19. Custom Cell Style', group: 'Community 기능' },
   { path: '/community/loading-empty-state', label: '20. Loading / Empty State', group: 'Community 기능' },
+  { path: '/community/row-spanning', label: '21. Row Spanning', group: 'Community 기능' },
 ];
 
 export const enterpriseSamples: SampleMenuItem[] = [
@@ -57,6 +58,9 @@ export const stylingSamples: SampleMenuItem[] = [
   { path: '/styling/cell-border', label: '4. Cell Border Styling', group: '스타일링 & 테마' },
   { path: '/styling/cell-alignment', label: '5. Cell Alignment', group: '스타일링 & 테마' },
   { path: '/styling/cell-class-alignment', label: '6. Cell Class Alignment', group: '스타일링 & 테마' },
+  { path: '/styling/cell-text-ellipsis', label: '7. Cell Text Ellipsis', group: '스타일링 & 테마' },
+  { path: '/styling/cell-text-wrap', label: '8. Cell Text Wrap', group: '스타일링 & 테마' },
+  { path: '/styling/grid-height', label: '9. Grid Height 100%', group: '스타일링 & 테마' },
 ];
 
 export const allSamples = [...communitySamples, ...enterpriseSamples, ...stylingSamples];

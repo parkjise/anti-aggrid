@@ -23,12 +23,16 @@ import PaginationSample from './pages/Community/PaginationSample';
 import CsvExportSample from './pages/Community/CsvExportSample';
 import CustomCellStyleSample from './pages/Community/CustomCellStyleSample';
 import LoadingEmptyStateSample from './pages/Community/LoadingEmptyStateSample';
+import RowSpanningSample from './pages/Community/RowSpanningSample';
 import ScssStyleSample from './pages/Styling/ScssStyleSample';
 import StyledComponentSample from './pages/Styling/StyledComponentSample';
 import RowHeightSample from './pages/Styling/RowHeightSample';
 import CellBorderSample from './pages/Styling/CellBorderSample';
 import CellAlignmentSample from './pages/Styling/CellAlignmentSample';
 import CellClassAlignmentSample from './pages/Styling/CellClassAlignmentSample';
+import CellTextEllipsisSample from './pages/Styling/CellTextEllipsisSample';
+import CellTextWrapSample from './pages/Styling/CellTextWrapSample';
+import GridHeight100Sample from './pages/Styling/GridHeight100Sample';
 
 // Phase 4
 import SetFilterSample from './pages/Enterprise/SetFilterSample';
@@ -85,6 +89,7 @@ function App() {
           <Route path="community/csv-export" element={<CsvExportSample />} />
           <Route path="community/custom-cell-style" element={<CustomCellStyleSample />} />
           <Route path="community/loading-empty-state" element={<LoadingEmptyStateSample />} />
+          <Route path="community/row-spanning" element={<RowSpanningSample />} />
 
           {/* Styling */}
           <Route path="styling/scss" element={<ScssStyleSample />} />
@@ -93,6 +98,9 @@ function App() {
           <Route path="styling/cell-border" element={<CellBorderSample />} />
           <Route path="styling/cell-alignment" element={<CellAlignmentSample />} />
           <Route path="styling/cell-class-alignment" element={<CellClassAlignmentSample />} />
+          <Route path="styling/cell-text-ellipsis" element={<CellTextEllipsisSample />} />
+          <Route path="styling/cell-text-wrap" element={<CellTextWrapSample />} />
+          <Route path="styling/grid-height" element={<GridHeight100Sample />} />
 
           {/* Phase 4 Enterprise */}
           <Route path="enterprise/set-filter" element={<SetFilterSample />} />

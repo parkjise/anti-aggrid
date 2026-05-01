@@ -232,6 +232,7 @@ html,
 
 .grid-wrapper {
   flex: 1;
+  min-height: 600px;
   background: var(--card);
   border-radius: 12px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02);
@@ -282,6 +283,20 @@ body .ag-theme-quartz {
   display: flex !important;
   align-items: center !important;
   border: none;
+}
+
+/* Fix text ellipsis when ag-cell is display: flex */
+.ag-theme-quartz .ag-cell {
+  overflow: hidden !important;
+}
+.ag-theme-quartz .ag-cell:not(.ag-cell-wrap-text) .ag-cell-value,
+.ag-theme-quartz .ag-cell:not(.ag-cell-wrap-text) .ag-cell-wrapper {
+  display: block !important;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
 }
 
 /* Grid Form Elements (Inputs, Selects, etc.) */
