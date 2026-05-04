@@ -41,7 +41,7 @@ const RowSpanningSample: React.FC = () => {
       rowSpan: (params: RowSpanParams<EmployeeData>) => {
         const department = params.data?.department;
         const rowIndex = params.node?.rowIndex;
-        if (department === undefined || rowIndex === undefined) return 1;
+        if (department === undefined || rowIndex == null) return 1;
 
         // 이전 행이 같은 부서인지 확인 (같은 부서면 이미 병합되었으므로 1 반환)
         const prevRow = params.api.getDisplayedRowAtIndex(rowIndex - 1);
@@ -66,7 +66,7 @@ const RowSpanningSample: React.FC = () => {
           // 병합되는 첫 번째 셀(또는 1줄짜리 단일 셀)에 스타일을 적용하기 위함
           const department = params.data?.department;
           const rowIndex = params.node?.rowIndex;
-          if (department === undefined || rowIndex === undefined) return false;
+          if (department === undefined || rowIndex == null) return false;
           
           const prevRow = params.api.getDisplayedRowAtIndex(rowIndex - 1);
           return !prevRow || prevRow.data?.department !== department;
