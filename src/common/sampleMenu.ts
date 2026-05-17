@@ -26,6 +26,8 @@ export const communitySamples: SampleMenuItem[] = [
   { path: '/community/custom-cell-style', label: '19. Custom Cell Style', group: 'Community 기능' },
   { path: '/community/loading-empty-state', label: '20. Loading / Empty State', group: 'Community 기능' },
   { path: '/community/row-spanning', label: '21. Row Spanning', group: 'Community 기능' },
+  { path: '/community/column-flex', label: '22. Column Flex', group: 'Community 기능' },
+  { path: '/community/column-fit', label: '23. Column Fit', group: 'Community 기능' },
 ];
 
 export const enterpriseSamples: SampleMenuItem[] = [

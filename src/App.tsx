@@ -24,6 +24,8 @@ import CsvExportSample from './pages/Community/CsvExportSample';
 import CustomCellStyleSample from './pages/Community/CustomCellStyleSample';
 import LoadingEmptyStateSample from './pages/Community/LoadingEmptyStateSample';
 import RowSpanningSample from './pages/Community/RowSpanningSample';
+import ColumnFlexSample from './pages/Community/ColumnFlexSample';
+import ColumnFitSample from './pages/Community/ColumnFitSample';
 import ScssStyleSample from './pages/Styling/ScssStyleSample';
 import StyledComponentSample from './pages/Styling/StyledComponentSample';
 import RowHeightSample from './pages/Styling/RowHeightSample';
@@ -90,6 +92,8 @@ function App() {
           <Route path="community/custom-cell-style" element={<CustomCellStyleSample />} />
           <Route path="community/loading-empty-state" element={<LoadingEmptyStateSample />} />
           <Route path="community/row-spanning" element={<RowSpanningSample />} />
+          <Route path="community/column-flex" element={<ColumnFlexSample />} />
+          <Route path="community/column-fit" element={<ColumnFitSample />} />
 
           {/* Styling */}
           <Route path="styling/scss" element={<ScssStyleSample />} />
