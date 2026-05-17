@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback, useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import { type ColDef, ModuleRegistry, type GridSizeChangedEvent, type GridReadyEvent } from 'ag-grid-community';
+import { type ColDef, ModuleRegistry, type GridSizeChangedEvent } from 'ag-grid-community';
 import { AllCommunityModule } from 'ag-grid-community';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
