@@ -1,0 +1,59 @@
+/* src/common/components/CommonGrid/CommonGrid.css */
+
+/* 부모 컨테이너가 flex: 1과 같이 높이를 유동적으로 가질 때 내부 그리드가 꽉 차도록 설정 */
+.common-grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.common-grid-container {
+  flex: 1;
+  width: 100%;
+  min-height: 200px; /* 최소 높이 보장 */
+}
+
+/* 데이터 없음 오버레이 텍스트 스타일 */
+.common-grid-empty-msg {
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 20px;
+}
+
+/* 간단한 서버사이드 페이징 바 예시 스타일 */
+.common-grid-pagination-server {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border: 1px solid #dde2eb;
+  border-top: none;
+  gap: 16px;
+}
+
+.common-grid-pagination-server button {
+  padding: 6px 12px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.common-grid-pagination-server button:hover:not(:disabled) {
+  background-color: #f0f0f0;
+}
+
+.common-grid-pagination-server button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.common-grid-pagination-info {
+  font-size: 14px;
+  color: #333;
+}

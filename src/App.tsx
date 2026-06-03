@@ -26,6 +26,7 @@ import LoadingEmptyStateSample from './pages/Community/LoadingEmptyStateSample';
 import RowSpanningSample from './pages/Community/RowSpanningSample';
 import ColumnFlexSample from './pages/Community/ColumnFlexSample';
 import ColumnFitSample from './pages/Community/ColumnFitSample';
+import UsageExample from './pages/Community/UsageExample';
 import ScssStyleSample from './pages/Styling/ScssStyleSample';
 import StyledComponentSample from './pages/Styling/StyledComponentSample';
 import RowHeightSample from './pages/Styling/RowHeightSample';
@@ -94,6 +95,7 @@ function App() {
           <Route path="community/row-spanning" element={<RowSpanningSample />} />
           <Route path="community/column-flex" element={<ColumnFlexSample />} />
           <Route path="community/column-fit" element={<ColumnFitSample />} />
+          <Route path="community/common-grid" element={<UsageExample />} />
 
           {/* Styling */}
           <Route path="styling/scss" element={<ScssStyleSample />} />
