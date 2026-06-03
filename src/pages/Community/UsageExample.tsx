@@ -3,6 +3,8 @@ import { type ColDef, type ICellRendererParams } from 'ag-grid-community';
 import { CommonGrid } from '../../common/components/CommonGrid';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
+import SampleSourcePanel from '../../common/components/SampleSourcePanel';
+import sourceCode from './UsageExample.tsx?raw';
 
 // ----------------------------------------------------------------------------
 // [커스텀 셀 렌더러 정의 영역]
@@ -125,6 +127,7 @@ const UsageExample: React.FC = () => {
           onRowClicked={(e) => console.log('Row Clicked:', e.data?.name)}
         />
       </div>
+      <SampleSourcePanel sourceCode={sourceCode} fileName="UsageExample.tsx" />
     </div>
   );
 };
