@@ -4,7 +4,9 @@ import { CommonGrid } from '../../common/components/CommonGrid';
 import { generateEmployeeData, type Employee } from '../../common/dummyData';
 import SampleHeader from '../../common/components/SampleHeader';
 import SampleSourcePanel from '../../common/components/SampleSourcePanel';
-import sourceCode from './UsageExample.tsx?raw';
+import usageSource from './UsageExample.tsx?raw';
+import commonGridSource from '../../common/components/CommonGrid/CommonGrid.tsx?raw';
+import typesSource from '../../common/components/CommonGrid/types.ts?raw';
 
 // ----------------------------------------------------------------------------
 // [커스텀 셀 렌더러 정의 영역]
@@ -65,6 +67,9 @@ const ActionButtonRenderer = (params: ICellRendererParams<Employee>) => {
 // [공통 컴포넌트 사용 예시 페이지]
 // ----------------------------------------------------------------------------
 const UsageExample: React.FC = () => {
+  // 소스 코드 탭 상태 관리
+  const [activeTab, setActiveTab] = useState<'usage' | 'core' | 'types'>('usage');
+
   // 가상 데이터 로드
   const [rowData] = useState<Employee[]>(() => generateEmployeeData(50));
 
@@ -97,6 +102,26 @@ const UsageExample: React.FC = () => {
     },
   ], []);
 
+  // 탭 클릭 핸들러
+  const TabButton = ({ id, label }: { id: typeof activeTab, label: string }) => (
+    <button
+      onClick={() => setActiveTab(id)}
+      style={{
+        padding: '8px 16px',
+        fontSize: '14px',
+        fontWeight: activeTab === id ? 700 : 400,
+        color: activeTab === id ? '#0074FF' : '#4b5563',
+        border: 'none',
+        borderBottom: activeTab === id ? '2px solid #0074FF' : '2px solid transparent',
+        background: 'none',
+        cursor: 'pointer',
+        transition: 'all 0.2s'
+      }}
+    >
+      {label}
+    </button>
+  );
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '16px' }}>
       <SampleHeader 
@@ -127,7 +152,18 @@ const UsageExample: React.FC = () => {
           onRowClicked={(e) => console.log('Row Clicked:', e.data?.name)}
         />
       </div>
-      <SampleSourcePanel sourceCode={sourceCode} fileName="UsageExample.tsx" />
+
+      <div style={{ marginTop: '8px' }}>
+        <div style={{ display: 'flex', borderBottom: '1px solid #DEE1ED', marginBottom: '8px' }}>
+          <TabButton id="usage" label="UsageExample.tsx (사용 예시)" />
+          <TabButton id="core" label="CommonGrid.tsx (공통 컴포넌트)" />
+          <TabButton id="types" label="types.ts (타입 정의)" />
+        </div>
+
+        {activeTab === 'usage' && <SampleSourcePanel sourceCode={usageSource} fileName="UsageExample.tsx" />}
+        {activeTab === 'core' && <SampleSourcePanel sourceCode={commonGridSource} fileName="CommonGrid.tsx" />}
+        {activeTab === 'types' && <SampleSourcePanel sourceCode={typesSource} fileName="types.ts" />}
+      </div>
     </div>
   );
 };
