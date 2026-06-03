@@ -1,12 +1,16 @@
 import { useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import { type ColDef } from 'ag-grid-community';
+import { type ColDef, ModuleRegistry } from 'ag-grid-community';
+import { AllCommunityModule } from 'ag-grid-community';
 import type { CommonGridProps } from './types';
 
 // AG Grid 스타일 임포트 (공통 컴포넌트 내부에 두어 사용처에서 잊지 않도록 함)
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 import './CommonGrid.css';
+
+// 모듈 등록 (전역 1회 실행 보장)
+ModuleRegistry.registerModules([AllCommunityModule]);
 
 /**
  * 전사 공통 AG Grid 컴포넌트 (Best Practice)
@@ -55,6 +59,9 @@ export const CommonGrid = <TData extends any>(props: CommonGridProps<TData>) => 
           // 필수 데이터와 컬럼
           rowData={rowData}
           columnDefs={columnDefs}
+          
+          // 테마 설정 (v31+ 에서는 legacy로 설정해야 기존 CSS 클래스 방식이 안정적으로 동작할 수 있음)
+          theme="legacy"
           
           // 공통 설정 병합
           defaultColDef={baseDefaultColDef}
